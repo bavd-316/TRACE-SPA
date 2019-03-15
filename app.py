@@ -1,10 +1,11 @@
-from database import init_db
+from pipeline import db_connect
 from flask import Flask
 from flask_graphql import GraphQLView
 from schema import schema
 
 app = Flask(__name__)
 app.debug = True
+db_connect()
 
 default_query = '''
 {
@@ -25,11 +26,9 @@ default_query = '''
         subject,
         number,
         section,
-        stats {
-          enrollment,
-          declines,
-          responses
-        },
+        enrollment,
+        declines,
+        responses,
         data {
           question_id,
           question_abbrev,
@@ -49,14 +48,10 @@ default_query = '''
       }
     }
   },
-  allUsers {
-    edges {
-      node {
-        id,
-        firstname,
-        lastname    
-      }
-    }
+  instructor {
+    firstname
+    middlename
+    lastname
   }
 }'''.strip()
 
@@ -68,5 +63,4 @@ app.add_url_rule(
 )
 
 if __name__ == '__main__':
-    init_db()
     app.run()
