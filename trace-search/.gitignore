@@ -1,8 +1,9 @@
-/venv
-/.idea
-/__pycache__
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
 # dependencies
 /node_modules
+/.pnp
+.pnp.js
 
 # testing
 /coverage
@@ -20,9 +21,6 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-
-# AppSync
-AppSync.js
 
 #amplify
 amplify/\#current-cloud-backend
