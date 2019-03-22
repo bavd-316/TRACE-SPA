@@ -1,0 +1,14 @@
+{
+    "trace": {
+        "awscloudformation": {
+            "AuthRoleName": "trace-search-20190320224147-authRole",
+            "UnauthRoleArn": "arn:aws:iam::317318443930:role/trace-search-20190320224147-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::317318443930:role/trace-search-20190320224147-authRole",
+            "Region": "us-east-1",
+            "DeploymentBucketName": "trace-search-20190320224147-deployment",
+            "UnauthRoleName": "trace-search-20190320224147-unauthRole",
+            "StackName": "trace-search-20190320224147",
+            "StackId": "arn:aws:cloudformation:us-east-1:317318443930:stack/trace-search-20190320224147/e05e9f40-4b82-11e9-97b9-0eff07caa3c6"
+        }
+    }
+}
