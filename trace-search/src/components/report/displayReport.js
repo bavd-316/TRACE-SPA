@@ -8,7 +8,7 @@ class DisplayReports extends React.Component {
 
     render() {
         return (
-            <div className="questions">
+            <div className="reports">
                 <Query query={gql(listCourseReports)}>
                     {({ loading, data, error }) => {
 
