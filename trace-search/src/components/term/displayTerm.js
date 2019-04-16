@@ -12,8 +12,8 @@ class DisplayTerms extends React.Component {
                 <Query query={gql( listTerms )}>
                     {({ loading, data, error }) => {
 
-                        if (loading) return <p>loading...</p>
-                        if (error) return <p>{error.message}</p>
+                        if (loading) return <p>loading...</p>;
+                        if (error) return <p>{error.message}</p>;
 
                         return <Term data={data}/>
                     }}
