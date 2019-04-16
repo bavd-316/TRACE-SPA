@@ -11,6 +11,10 @@ class Query(graphene.ObjectType):
     user = graphene.relay.Node.Field((schemas.User))
     userList = SQLAlchemyConnectionField(schemas.User)
 
+    # Instructor
+    instructor = graphene.relay.Node.Field((schemas.Instructor))
+    instructorList = SQLAlchemyConnectionField(schemas.Instructor)
+
 class Mutation(graphene.ObjectType):
     """Mutations which can be performed by this API"""
 
