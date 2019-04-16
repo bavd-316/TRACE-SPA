@@ -12,8 +12,8 @@ class DisplayStudents extends React.Component {
                 <Query query={gql( listStudents )}>
                     {({ loading, data, error }) => {
 
-                        if (loading) return <p>loading...</p>
-                        if (error) return <p>{error.message}</p>
+                        if (loading) return <p>loading...</p>;
+                        if (error) return <p>{error.message}</p>;
 
                         return <Student data={data}/>
                     }}

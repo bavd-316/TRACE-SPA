@@ -12,8 +12,8 @@ class DisplayInstructors extends React.Component {
                 <Query query={gql(listInstructors)}>
                     {({ loading, data, error }) => {
 
-                        if (loading) return <p>loading...</p>
-                        if (error) return <p>{error.message}</p>
+                        if (loading) return <p>loading...</p>;
+                        if (error) return <p>{error.message}</p>;
 
                         return <Instructor data={data}/>
                     }}

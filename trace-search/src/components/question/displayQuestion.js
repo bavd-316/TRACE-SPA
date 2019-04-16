@@ -12,8 +12,8 @@ class DisplayQuestions extends React.Component {
                 <Query query={gql(listQuestions)}>
                     {({ loading, data, error }) => {
 
-                        if (loading) return <p>loading...</p>
-                        if (error) return <p>{error.message}</p>
+                        if (loading) return <p>loading...</p>;
+                        if (error) return <p>{error.message}</p>;
 
                         return <Question data={data}/>
                     }}
