@@ -1,11 +1,11 @@
-from .base import Base
-from sqlalchemy import Column, Integer, Unicode
+from . import db
 
-class ModelTerm(Base):
-    __tablename__ = 'Term'
 
-    id = Column(Integer, primary_key=True)
-    title = Column(Unicode(200), nullable=False)
+class ModelTerm(db.Model):
+    __tablename__ = 'term'
+
+    id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.Unicode(200), nullable=False)
 
     @property
     def normal_title(self):
