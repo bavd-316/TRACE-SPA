@@ -1,16 +1,13 @@
-from .base import Base
-from sqlalchemy import Column, Integer, ForeignKey, Float
-from sqlalchemy.orm import relationship
+from . import db
 
 
-class ModelQuestion(Base):
-    __tablename__ = 'Answer'
+class ModelAnswer(db.Model):
+    __tablename__ = 'answer'
 
-    id = Column(Integer, primary_key=True)
-    text_id = Column(ForeignKey('Lookup_AnswerText.id'),
-                          nullable=False)
-    question_id = Column(ForeignKey('Question.id'), nullable=False)
-    value = Column(Integer, nullable=False)
+    id = db.Column(db.Integer, primary_key=True)
+    answer_text_id = db.Column(db.ForeignKey('lookup_answertext.id'), nullable=False)
+    question_id = db.Column(db.ForeignKey('question.id'), nullable=False)
+    value = db.Column(db.Integer, nullable=False)
 
-    lookup_text = relationship('LookupAnswerText', lazy='joined')
-    question = relationship('Question', back_populates="Answers")
+    lookup_answertext = db.relationship('lookup_answertext', lazy='joined')
+    question = db.relationship('question', back_populates="answer")

@@ -1,13 +1,8 @@
-from graphene_sqlalchemy import SQLAlchemyObjectType
-from database.base import db_session
-from database.instructor import ModelInstructor
 import graphene
-import utils
+from graphene_sqlalchemy import SQLAlchemyObjectType
 
-class InstructorAttribute:
-    firstname = graphene.String(description="Instructor's first name.")
-    lastname = graphene.String(description="Instructors's last name.")
-    middlename = graphene.String(description="Instructor's middle name.")
+from database.instructor import ModelInstructor
+
 
 class Instructor(SQLAlchemyObjectType):
     """Instructor Node"""
@@ -15,3 +10,4 @@ class Instructor(SQLAlchemyObjectType):
     class Meta:
         model = ModelInstructor
         interfaces = (graphene.relay.Node,)
+
