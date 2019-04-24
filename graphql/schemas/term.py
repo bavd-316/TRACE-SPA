@@ -1,15 +1,18 @@
-from graphene_sqlalchemy import SQLAlchemyObjectType
-from database.base import db_session
-from database.term import ModelTerm
 import graphene
-import utils
+from graphene_sqlalchemy import SQLAlchemyConnectionField
+from graphene_sqlalchemy import SQLAlchemyObjectType
 
-class TermAttribute:
-    title = graphene.String(description="Term title")
+from database.term import ModelTerm
+
 
 class Term(SQLAlchemyObjectType):
-    """Term Node"""
 
     class Meta:
         model = ModelTerm
         interfaces = (graphene.relay.Node,)
+
+
+class TermQuery(graphene.ObjectType):
+
+    getTerm = graphene.relay.Node.Field((Term))
+    termList = SQLAlchemyConnectionField(Term)

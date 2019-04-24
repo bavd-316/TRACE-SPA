@@ -1,3 +1,3 @@
-from .user import User
-from .instructor import Instructor
-from .term import Term
+from .instructor import InstructorQuery, Instructor
+from .term import TermQuery, Term
+from .course import CourseQuery, Course, ScoreData, Question, Answer

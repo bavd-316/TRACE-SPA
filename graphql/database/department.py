@@ -1,15 +1,11 @@
 from . import db
 
 
-class ModelTerm(db.Model):
-    __tablename__ = 'term'
+class ModelDepartment(db.Model):
+    __tablename__ = 'department'
 
     id = db.Column(db.Integer, primary_key=True)
-    title = db.Column(db.Unicode(200), nullable=False)
-
-
-
-
-
+    code = db.Column(db.Unicode(10))
+    title = db.Column(db.Unicode(100))
     def as_dict(self):
         return {c.name: getattr(self, c.name) for c in self.__table__.columns}

@@ -1,28 +1,16 @@
-from .base import Base
-from sqlalchemy import Column, Integer, Unicode
+from . import db
 
 
-class ModelInstructor(Base):
-    __tablename__ = 'Instructor'
+class ModelInstructor(db.Model):
+    __tablename__ = 'instructor'
 
-    id = Column(Integer, primary_key=True)
-    firstname = Column(Unicode(255), nullable=False)
-    lastname = Column(Unicode(255), nullable=False)
-    middlename = Column(Unicode(255), nullable=True)
+    id = db.Column(db.Integer, primary_key=True)
+    first_name = db.Column(db.Unicode(255))
+    last_name = db.Column(db.Unicode(255))
+    middle_name = db.Column(db.Unicode(255))
 
-    @property
-    def id(self):
-        raise AttributeError('id: write-only field')
-
-    @property
-    def email(self):
-        raise AttributeError('email: write-only field')
-
-    @property
-    def student_id(self):
-        raise AttributeError('student_id: write-only field')
-
-    @property
-    def full_name(self):
-        return ' '.join(filter(lambda x: x is not None and x.strip(),
-                               [self.firstname, self.lastname]))
+    @classmethod
+    def get_instructor(cls, id):
+        return cls.query.get(id)
+    def as_dict(self):
+        return {c.name: getattr(self, c.name) for c in self.__table__.columns}
