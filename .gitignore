@@ -1,6 +1,7 @@
 /venv
 /.idea
 /__pycache__
+/graphql/venv
 # dependencies
 /node_modules
 
