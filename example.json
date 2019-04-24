@@ -1,0 +1,111 @@
+{
+  "summary": [
+    {
+      "question": "Course Related Questions",
+      "course": 3.8,
+      "department": 4.2,
+      "university": 4.1
+    },
+    {
+      "question": "Learning Related Questions",
+      "course": 3.8,
+      "department": 4.2,
+      "university": 4.1
+    },
+    {
+      "question": "Instructor Related Questions",
+      "course": 3.8,
+      "department": 4.2,
+      "university": 4.1
+    },
+    {
+      "question": "Instructor Effectiveness",
+      "course": 3.8,
+      "department": 4.2,
+      "university": 4.1
+    }
+  ],
+  "course" : [
+    {
+      "question": "The syllabus helped me to learn.",
+      "course": 3.8,
+      "department": 4.2,
+      "university": 4.1
+    },
+    {
+      "question": "The textbook(s) helped me to learn.",
+      "course": 3.8,
+      "department": 4.2,
+      "university": 4.1
+    }
+  ],
+  "learning": [
+    {
+      "question": "I learned a lot in this course",
+      "course": 4.1,
+      "department": 4.4,
+      "university": 4.4
+    },
+    {
+      "question": "I learned to apply course concepts and principles",
+      "course": 4.4,
+      "department": 4.5,
+      "university": 4.4
+    }
+  ],
+  "instructor": [
+    {
+      "question": "The instructor possessed the basic communication skills necessary to teach the course.",
+      "course": 4.1,
+      "department": 4.4,
+      "university": 4.4
+    },
+    {
+      "question": "The instructor clearly communicated ideas and information.",
+      "course": 4.4,
+      "department": 4.5,
+      "university": 4.4
+    },
+    {
+      "question": "The instructor clearly stated the objectives of the course.",
+      "course": 4.4,
+      "department": 4.5,
+      "university": 4.4
+    }
+  ],
+  "effectiveness": [
+    {
+      "question": "What is your overall rating of this instructor's teaching effectiveness?",
+      "course": 4.3,
+      "department": 4.6,
+      "university": 4.4
+    }
+  ],
+  "demographics": [
+    {
+      "question": "The number of hours per week I devoted to this course including lectures, discussions, homework, reading, projects, assignments and tests.",
+      "percentages": [
+        {
+          "label": "1-4",
+          "value": "21"
+        },
+        {
+          "label": "5-8",
+          "value": "29"
+        },
+        {
+          "label": "9-12",
+          "value": "29"
+        },
+        {
+          "label": "13-16",
+          "value": "21"
+        },
+        {
+          "label": "17-20",
+          "value": "0"
+        }
+      ]
+    }
+  ]
+}
