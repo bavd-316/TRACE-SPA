@@ -6,3 +6,20 @@
     float: right;
     background-color: #b61924;
 }
+
+:local(.sectionBar) {
+    width: 600px;
+    height: 40px;
+    margin: auto;
+}
+
+:local(.sectionBar) > div {
+    display: inline-block;
+    width: 32%;
+    height: 40px;
+    border: 2px solid #303030;
+}
+
+:local(.active) {
+    background-color: #b61924;
+}
