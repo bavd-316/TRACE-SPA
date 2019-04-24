@@ -1,28 +1,22 @@
-from graphene_sqlalchemy import SQLAlchemyConnectionField
 import graphene
 import schemas
 
-
-class Query(graphene.ObjectType):
+class Query(schemas.InstructorQuery, schemas.TermQuery, schemas.CourseQuery, graphene.ObjectType):
     """Nodes which can be queried by this API"""
 
     node = graphene.relay.Node.Field()
 
-    # User
-    user = graphene.relay.Node.Field((schemas.User))
-    userList = SQLAlchemyConnectionField(schemas.User)
-
-    # Instructor
-    instructor = graphene.relay.Node.Field((schemas.Instructor))
-    instructorList = SQLAlchemyConnectionField(schemas.Instructor)
-
-    # Term
-    term = graphene.relay.Node.Field((schemas.Term))
-    termList = SQLAlchemyConnectionField(schemas.Term)
 
 
 class Mutation(graphene.ObjectType):
     """Mutations which can be performed by this API"""
+    pass
 
 
-schema = graphene.Schema(query=Query, mutation=Mutation)
+schema = graphene.Schema(query=Query,
+                         types=[schemas.Term,
+                                             schemas.Instructor,
+                                             schemas.Course,
+                                             schemas.ScoreData,
+                                             schemas.Question,
+                                             schemas.Answer])
