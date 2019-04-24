@@ -4,7 +4,7 @@ from os import listdir
 
 import xlrd
 
-import authentication as auth
+from pipeline.authentication import load_settings
 
 
 def initialize_sheet(file):
@@ -182,7 +182,7 @@ def get_single_scores(name):
 
 
 def all_xls_names():
-    dl_path = auth.load_settings()['Download']
+    dl_path = load_settings()['Download']
     filenames = listdir(dl_path)
     return [filename.replace(filename, dl_path + "\\" + filename) for filename
             in filenames if filename.endswith('.xls')]
@@ -195,6 +195,4 @@ def get_all_scores():
 
 
 if __name__ == "__main__":
-    # print(get_all_scores())
     create_json(get_all_scores())
-    # create_json(get_single_scores("./downloads/ACCT120202Lecture-Goldman-201630_Spring_2016-Ratings_summary_w_CRN.xls"))

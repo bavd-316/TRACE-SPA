@@ -1,8 +1,8 @@
 import csv
 import json
 
-import complex_json_encoder as cje
-import trace
+from pipeline.complex_json_encoder import ComplexJSONSerializable, ComplexEncoder
+import pipeline.trace as trace
 
 
 class IDNameRetriever:
@@ -10,7 +10,7 @@ class IDNameRetriever:
         return None
 
 
-class Comment(cje.ComplexJSONSerializable, IDNameRetriever):
+class Comment(ComplexJSONSerializable, IDNameRetriever):
     def __init__(self, commentID, text, report_id):
         self.commentID = commentID
         self.text = text
@@ -20,7 +20,7 @@ class Comment(cje.ComplexJSONSerializable, IDNameRetriever):
         return "commentID"
 
 
-class Instructor(cje.ComplexJSONSerializable, IDNameRetriever):
+class Instructor(ComplexJSONSerializable, IDNameRetriever):
     def __init__(self, instructorID, firstName, middleName, lastName):
         self.instructorID = instructorID
         self.firstName = firstName
@@ -31,7 +31,7 @@ class Instructor(cje.ComplexJSONSerializable, IDNameRetriever):
         return "instructorID"
 
 
-class Term(cje.ComplexJSONSerializable, IDNameRetriever):
+class Term(ComplexJSONSerializable, IDNameRetriever):
     def __init__(self, termID, title):
         self.termID = termID
         self.title = title
@@ -40,7 +40,7 @@ class Term(cje.ComplexJSONSerializable, IDNameRetriever):
         return "termID"
 
 
-class Department(cje.ComplexJSONSerializable, IDNameRetriever):
+class Department(ComplexJSONSerializable, IDNameRetriever):
     def __init__(self, departmentID, code, title):
         self.departmentID = departmentID
         self.code = code
@@ -50,7 +50,7 @@ class Department(cje.ComplexJSONSerializable, IDNameRetriever):
         return "departmentID"
 
 
-class Course(cje.ComplexJSONSerializable, IDNameRetriever):
+class Course(ComplexJSONSerializable, IDNameRetriever):
     def __init__(self, id, report_id, instructorID, termID, name, subject, number, section, crn, departmentID):
         self.courseID = id
         self.instructorID = instructorID
@@ -69,7 +69,7 @@ class Course(cje.ComplexJSONSerializable, IDNameRetriever):
         return "courseID"
 
 
-class Lookup_QuestionText(cje.ComplexJSONSerializable, IDNameRetriever):
+class Lookup_QuestionText(ComplexJSONSerializable, IDNameRetriever):
     def __init__(self, abbrev, text, questionTextID):
         self.abbrev = abbrev
         self.text = text
@@ -79,7 +79,7 @@ class Lookup_QuestionText(cje.ComplexJSONSerializable, IDNameRetriever):
         return "questionTextID"
 
 
-class Lookup_AnswerText(cje.ComplexJSONSerializable, IDNameRetriever):
+class Lookup_AnswerText(ComplexJSONSerializable, IDNameRetriever):
     def __init__(self, text, answerTextID):
         self.text = text
         self.answerTextID = answerTextID
@@ -88,7 +88,7 @@ class Lookup_AnswerText(cje.ComplexJSONSerializable, IDNameRetriever):
         return "answerTextID"
 
 
-class Answer(cje.ComplexJSONSerializable, IDNameRetriever):
+class Answer(ComplexJSONSerializable, IDNameRetriever):
     def __init__(self, answerID, answerTextID, questionID, value):
         self.answerTextID = answerTextID
         self.answerID = answerID
@@ -99,7 +99,7 @@ class Answer(cje.ComplexJSONSerializable, IDNameRetriever):
         return "answerID"
 
 
-class Question(cje.ComplexJSONSerializable, IDNameRetriever):
+class Question(ComplexJSONSerializable, IDNameRetriever):
     def __init__(self, questionID, legacyID, respCount, respRate, mean, median, stdDev, questionTextID, dataID):
         self.respCount = respCount
         self.respRate = respRate
@@ -115,7 +115,7 @@ class Question(cje.ComplexJSONSerializable, IDNameRetriever):
         return "questionID"
 
 
-class ScoreData(cje.ComplexJSONSerializable, IDNameRetriever):
+class ScoreData(ComplexJSONSerializable, IDNameRetriever):
     def __init__(self, dataID, reportID, enrollment, responses, declines):
         self.dataID = dataID
         # self.legacyMongoID = legacyMongoID
@@ -145,12 +145,6 @@ def get_all_scores(reports):
     scores = []
 
     for report in reports:
-        '''
-        oid = report['_id']['$oid']
-        url = 'https://trace-api.herokuapp.com/report/' + oid
-        response = requests.get(url)
-        results = json.loads(response.text)['result']
-        '''
         scores += [report['data']]
 
     return scores
@@ -165,7 +159,7 @@ def make_unique_json(obj_list):
     if len(obj_list) > 0:
         type_name = type(obj_list[0]).__name__
         json_list = list(json.loads(objStr) for objStr in set(json.dumps(
-            el, sort_keys=True, cls=cje.ComplexEncoder, ensure_ascii=False) for el in obj_list))
+            el, sort_keys=True, cls=ComplexEncoder, ensure_ascii=False) for el in obj_list))
         # json_list = list(np.unique(list(np.array(json_list))))
 
         print("Before - " + type_name + " : " + str(len(obj_list)))
