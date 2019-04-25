@@ -13,4 +13,3 @@ class Term(db.Model, Dictable):
     @property
     def normal_title(self):
         return self.title.split(":").pop().strip().replace(' - ', ' ')
-
