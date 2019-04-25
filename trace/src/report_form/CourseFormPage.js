@@ -16,6 +16,9 @@ class CourseFormPage extends Component {
                 "Stupid Questions": [
                     "Question9", "Question10", "Question11", "Question12",
                     "Question13", "Question14", "Question15", "Question16"
+                ],
+                "Last Page": [
+                    "Question17"
                 ]
             }
         }
@@ -68,13 +71,20 @@ class CourseFormPage extends Component {
     render() {
         return (
             <div>
-                {this.renderCompletionBar()}
-                <CourseForm title={this.getQuestionKey()} questionList={this.getQuestionList()}/>
-                <button className={styles.button}
-                        onClick={this.nextPage}>{this.state.index < 2 ? "Next" : "Done"}</button>
-                {
-                    this.state.index > 0 ?
-                        <button className={styles.button} onClick={this.prevPage}>Prev</button> : null};
+                <div className={styles.banner}>
+
+                </div>
+                <div className={styles.form}>
+                    {this.renderCompletionBar()}
+                    <CourseForm title={this.getQuestionKey()} questionList={this.getQuestionList()}/>
+                    <div className={styles.buttonCluster}>
+                        <button className={styles.button}
+                                onClick={this.nextPage}>{this.state.index < 3 ? "Next" : "Done"}</button>
+                        {
+                            this.state.index > 0 ?
+                                <button className={styles.button} onClick={this.prevPage}>Prev</button> : null}
+                    </div>
+                </div>
             </div>
         )
     }
