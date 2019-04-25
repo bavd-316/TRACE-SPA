@@ -13,10 +13,9 @@ db = SQLAlchemy()
 def create_app(config_name):
     app = Flask('TRACE-API')
     app.config.from_object(config_by_name[config_name])
-    # TODO: Implement Searching
-    # app.elasticsearch = Elasticsearch(
-    #     [app.config['ELASTICSEARCH_URL']]) if app.config.get(
-    #     'ELASTICSEARCH_URL') else None
+    app.elasticsearch = Elasticsearch(
+        [app.config['ELASTICSEARCH_URL']]) if app.config.get(
+        'ELASTICSEARCH_URL') else None
     db.init_app(app)
     app.register_blueprint(api)
     logging.basicConfig()

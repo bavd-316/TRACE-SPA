@@ -10,7 +10,7 @@ class Config:
     DB_HOST = "nu-trace.clxfur70m41w.us-east-1.rds.amazonaws.com"
     DB_CRED = f"{os.getenv('DB_USERNAME')}:{os.getenv('DB_PASSWORD')}"
     SQLALCHEMY_DATABASE_URI = f"mysql+pymysql://{DB_CRED}@{DB_HOST}:3306/{DB_NAME}"
-    ELASTICSEARCH_URL = os.getenv('ELASTICSEARCH_URL')
+    ELASTICSEARCH_URL = "https://search-nutrace-q4krcpst6ceoktoppbgbvgrjyy.us-east-1.es.amazonaws.com/"
     SHOW_QUERIES_DEBUG = False
     DEBUG = False
     LOG_LEVEL = logging.INFO

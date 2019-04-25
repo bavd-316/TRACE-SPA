@@ -2,7 +2,8 @@ import flask
 from flask import request, jsonify, Response, json
 
 from trace.api.controller import api
-from trace.api.service.report_service import get_all_courses, get_single_course, get_single_report
+from trace.api.service.report_service import get_all_courses, get_single_course, get_single_report, \
+    search_courses, search_highlights_courses
 from trace.api.utils.constants import DEFAULT_PAGE_SIZE
 
 
@@ -11,15 +12,22 @@ def get_courses():
         """
         List many courses
         """
-        query = request.args.get('q', '', str)
+        query = request.args.get('query', '', str)
         page = request.args.get('page', 1, int)
         page_size = request.args.get('pageSize', DEFAULT_PAGE_SIZE, int)
         order_by = request.args.get('orderBy', 'id', str)
-        # if query:
-            # results = search_course_reports(query, page, page_size)
-        # else:
-        # TODO: Implement Searching
-        results = get_all_courses(page, page_size, order_by)
+        highlights = request.args.get('highlights', False, bool)
+
+        params = dict(query=query, page=page, page_size=page_size, order_by=order_by)
+
+        operation = get_all_courses
+        if query:
+            operation = search_courses if not highlights else search_highlights_courses
+            params.pop('order_by')
+        else:
+            params.pop('query')
+
+        results = operation(**params)
 
         # jsonify made this slow :(
         return Response(json.dumps({"data": results}), mimetype='application/json'), 200
