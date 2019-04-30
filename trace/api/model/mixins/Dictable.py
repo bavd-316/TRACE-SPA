@@ -18,7 +18,7 @@ class Dictable(object):
             if rel not in getattr(self, 'exclude_dict_fields', []):
                 rel_map = getattr(self, rel)
                 if isinstance(rel_map, InstrumentedList):
-                    # TODO: Figure out better way to remove ID's from the "right" places
+                    # YO: Figure out better way to remove ID's from the "right" places
                     fields[rel] = [el.as_dict(include_pk=False) for el in rel_map]
                 elif rel.startswith('lookup_'):
                     fields[rel.replace('lookup_', '')] = rel_map.as_dict().pop('text')

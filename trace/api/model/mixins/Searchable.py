@@ -15,7 +15,7 @@ class Searchable(object):
     def search(cls, expr, page, per_page):
         search_result = cls._perform_search(expr, page, per_page, highlights=False)
         ids = [x['report_id'] for x in search_result]
-        return cls.map_all_courses(ids) if len(ids) > 0 else []
+        return cls.map_all_courses(ids) if ids else []
 
     @classmethod
     def highlights(cls, expr, page, per_page):
