@@ -1,6 +1,6 @@
 :local(.container) {
     width: 90%;
-    margin: auto;
+    margin: 40px auto;
 }
 
 :local(.title) {
