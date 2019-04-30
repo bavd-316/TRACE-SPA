@@ -1,0 +1,32 @@
+:local(.container) {
+    padding: 10px;
+    background-color: #fff;
+    box-shadow: 0 3px 5px rgba(0,0,0,0.20);
+    padding-bottom: 20px;
+    width: 95%;
+    margin: auto;
+}
+
+:local(.courseList) {
+    width: 95%;
+    margin: auto;
+}
+
+:local(.title) {
+    font-size: 25px;
+    text-align: center;
+}
+
+:local(.course) p {
+    font-size: 20px;
+    margin: 30px auto;
+}
+
+:local(.course) span {
+    color: #b61924;
+    margin: auto 30px;
+}
+
+:local(.term) {
+    float: right;
+}

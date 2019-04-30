@@ -11,12 +11,15 @@
 :local(.buttonCluster) {
     display: block;
     margin: auto;
+    height: 70px;
+    position: relative;
+    right: 10%;
 }
 
 :local(.sectionBar) {
     /* 8px to include the borders */
     width: 708px;
-    height: 38px;
+    height: 30px;
     margin: auto;
 }
 
@@ -48,16 +51,17 @@
     -webkit-box-shadow: 0 3px 5px rgba(0, 0, 0, .2);
     -moz-box-shadow: 0 3px 5px rgba(0, 0, 0, .2);
     box-shadow: 0 3px 5px rgba(0, 0, 0, .2);
-    width: 90%;
+    width: 70%;
     margin: auto;
-    padding: 100px 0;
+    padding: 30px 0;
+    background-color: #FFFFFF;
 }
 
 :local(.banner) {
     -webkit-box-shadow: 0 3px 5px rgba(0, 0, 0, .2);
     -moz-box-shadow: 0 3px 5px rgba(0, 0, 0, .2);
     box-shadow: 0 3px 5px rgba(0, 0, 0, .2);
-    width: 90%;
+    width: 70%;
     height: 100px;
     margin: 20px auto;
     background-color: #b61924;
