@@ -1,0 +1,27 @@
+:local(.filter) {
+    display: block;
+    width: 100%;
+    height: 150px;
+    margin-top: 35px;
+    background-color: #FFFFFF;
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
+}
+
+:local(.filter) p {
+    font-size: 20px;
+    text-align: center;
+}
+
+:local(.dropdownLists) {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-column-gap: 20px;
+    margin: 30px;
+}
+
+:local(.dropdown) {
+    border: 1px solid #303030;
+    display: grid;
+    grid-column:  span 1;
+    height: 30px;
+}

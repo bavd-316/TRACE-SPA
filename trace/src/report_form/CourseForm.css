@@ -1,0 +1,13 @@
+:local(.container) {
+    width: 90%;
+    margin: 40px auto;
+}
+
+:local(.title) {
+    text-align: left;
+}
+
+:local(.questions) {
+    width: 100%;
+    margin: 20px 0;
+}
