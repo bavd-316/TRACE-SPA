@@ -1,7 +1,6 @@
-import React, {Component} from 'react';
+import React from 'react';
 import styles from './SearchPage.css';
 import SearchBar from './SearchBar.js';
-import Filter from "./Filter.js";
 import CourseListing from "../common/CourseListing.js";
 
 const SearchPage = () => {
@@ -53,7 +52,6 @@ const SearchPage = () => {
         <div className={styles.page}>
             <div className={styles.searchBar}>
                 <SearchBar/>
-                {Filter()}
                 <div className={styles.searchResults}>
                     {CourseListing("SEARCH RESULTS", courses)}
                 </div>

@@ -4,6 +4,7 @@ import header from './header/Header.js';
 import styles from './App.css';
 import SearchBar from "./search/SearchBar.js";
 import SearchPage from "./search/SearchPage";
+import SelectTag from "./search/SelectTag";
 
 class App extends Component {
     render() {
@@ -24,6 +25,7 @@ class App extends Component {
             <div className={styles.app}>
                 {header(headerContent)}
                 <SearchPage/>
+                <SelectTag/>
             </div>
         );
     }
