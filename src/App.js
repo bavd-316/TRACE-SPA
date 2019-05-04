@@ -6,29 +6,26 @@ import SearchBar from "./search/SearchBar.js";
 import SearchPage from "./search/SearchPage";
 import SelectTag from "./search/SelectTag";
 
-class App extends Component {
-    render() {
-        let headerContent = {
-            title: null,
-            pages: [
-                {
-                    active: true,
-                    label: "Dashboard"
-                },
-                {
-                    active: false,
-                    label: "SearchBar"
-                }
-            ]
-        };
-        return (
-            <div className={styles.app}>
-                {header(headerContent)}
-                <SearchPage/>
-                <SelectTag/>
-            </div>
-        );
-    }
-}
+const App = () => {
+    let headerContent = {
+        title: null,
+        pages: [
+            {
+                active: true,
+                label: "Dashboard"
+            },
+            {
+                active: false,
+                label: "SearchBar"
+            }
+        ]
+    };
+    return (
+        <div className={styles.app}>
+            {header(headerContent)}
+            {SearchPage()}
+        </div>
+    );
+};
 
 export default App;

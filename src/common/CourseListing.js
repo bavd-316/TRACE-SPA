@@ -2,6 +2,9 @@ import React from 'react';
 import styles from './CourseListing.css';
 
 let CourseListing = (title, courses) => {
+    if (!Array.isArray(courses) || !courses.length) {
+        courses = [];
+    }
     return (
         <div className={styles.container}>
             <p className={styles.title}>{title}</p>
