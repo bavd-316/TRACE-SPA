@@ -1,18 +1,18 @@
-import React, { useState } from "react";
-import styles from "./SearchBar.css";
+import React, { useState } from 'react';
+import styles from './SearchBar.css';
 
 const SearchBar = () => {
-  const [query, setQuery] = useState("");
+	const [query, setQuery] = useState('');
 
-  return (
-    <div className={styles.searchBar}>
-      <form>
-        <img src={require("./search_icon.svg")} />
-        <input onChange={event => setQuery(event.target.value)} />
-        <hr />
-      </form>
-    </div>
-  );
+	return (
+		<div className={styles.searchBar}>
+			<form>
+				{/*<img src={require("./search_icon.svg")} />*/}
+				<input onChange={event => setQuery(event.target.value)} />
+				<hr />
+			</form>
+		</div>
+	);
 };
 
 export default SearchBar;
