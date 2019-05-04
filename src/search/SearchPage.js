@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styles from './SearchPage.css';
 import SearchBar from './SearchBar.js';
 import CourseListing from "../common/CourseListing.js";
+
 
 const SearchPage = () => {
     let courses = [
@@ -48,17 +49,21 @@ const SearchPage = () => {
             term: "FALL 2018"
         }
     ];
+    const [results, useResults] = useState(courses);
+
+    const setResults = results => useResults(results);
+
     return (
         <div className={styles.page}>
             <div className={styles.searchBar}>
-                <SearchBar/>
+                <SearchBar setResults={setResults}/>
                 <div className={styles.searchResults}>
-                    {CourseListing("SEARCH RESULTS", courses)}
+                    {CourseListing("SEARCH RESULTS", results)}
                 </div>
             </div>
             <div className={styles.recentReports}>
                 <div className={styles.reports}>
-                    {CourseListing("RECENTLY VIEWED REPORTS", courses)}
+                    {CourseListing("RECENTLY VIEWED REPORTS", results)}
                 </div>
             </div>
         </div>
