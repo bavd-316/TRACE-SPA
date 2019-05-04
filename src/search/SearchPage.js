@@ -4,65 +4,22 @@ import SearchBar from './SearchBar.js';
 import CourseListing from '../common/CourseListing.js';
 
 const SearchPage = () => {
-	let courses = [
-		{
-			num: 'CS 2500',
-			label: 'FUNDAMENTALS OF COMPSCI',
-			instructor: 'B. LERNER',
-			term: 'FALL 2018'
-		},
-		{
-			num: 'CS 2500',
-			label: 'FUNDAMENTALS OF COMPSCI',
-			instructor: 'B. LERNER',
-			term: 'FALL 2018'
-		},
-		{
-			num: 'CS 2500',
-			label: 'FUNDAMENTALS OF COMPSCI',
-			instructor: 'B. LERNER',
-			term: 'FALL 2018'
-		},
-		{
-			num: 'CS 2500',
-			label: 'FUNDAMENTALS OF COMPSCI',
-			instructor: 'B. LERNER',
-			term: 'FALL 2018'
-		},
-		{
-			num: 'CS 2500',
-			label: 'FUNDAMENTALS OF COMPSCI',
-			instructor: 'B. LERNER',
-			term: 'FALL 2018'
-		},
-		{
-			num: 'CS 2500',
-			label: 'FUNDAMENTALS OF COMPSCI',
-			instructor: 'B. LERNER',
-			term: 'FALL 2018'
-		},
-		{
-			num: 'CS 2500',
-			label: 'FUNDAMENTALS OF COMPSCI',
-			instructor: 'B. LERNER',
-			term: 'FALL 2018'
-		}
-	];
-	const [results, useResults] = useState(courses);
-
-	const setResults = results => useResults(results);
+	const [results, setResults] = useState([]);
 
 	return (
 		<div className={styles.page}>
 			<div className={styles.searchBar}>
 				<SearchBar setResults={setResults} />
 				<div className={styles.searchResults}>
-					{CourseListing('SEARCH RESULTS', results)}
+					<CourseListing title={'SEARCH RESULTS'} courses={results} />
 				</div>
 			</div>
 			<div className={styles.recentReports}>
 				<div className={styles.reports}>
-					{CourseListing('RECENTLY VIEWED REPORTS', results)}
+					<CourseListing
+						title={'RECENTLY VIEWED REPORTS'}
+						courses={results}
+					/>
 				</div>
 			</div>
 		</div>

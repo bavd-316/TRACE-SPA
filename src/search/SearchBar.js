@@ -3,7 +3,7 @@ import styles from './SearchBar.css';
 import SVG from 'react-inlinesvg';
 import KeyImage from './search_icon.svg';
 import axios from 'axios';
-import _ from 'lodash';
+import lodashThrottle from 'lodash/throttle';
 
 const template = {
 	link: 'Report url',
@@ -12,9 +12,9 @@ const template = {
 	instructor: 'B. Lerner'
 };
 
-const SearchBar = props => {
+const SearchBar = ({ setResults }) => {
 	const loadOptions = event => onChange(event);
-	const debouncedLoad = _.throttle(loadOptions, 500);
+	lodashThrottle(loadOptions, 500);
 
 	const parseOptions = options => {
 		return options.data
@@ -43,11 +43,11 @@ const SearchBar = props => {
 			});
 	};
 	const onChange = e => {
-		const { value } = e.target;
+		const value = e.target.value;
 		const res = getResults(value);
 		console.log(res);
 		res.then(value => {
-			props.setResults(value);
+			setResults(value);
 		});
 	};
 
