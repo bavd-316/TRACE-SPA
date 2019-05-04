@@ -1,35 +1,18 @@
-import React, {Component} from 'react';
-import styles from './SearchBar.css';
+import React, { useState } from "react";
+import styles from "./SearchBar.css";
 
-class SearchBar extends Component {
-    constructor(props) {
-        super(props);
+const SearchBar = props => {
+  const [query, setQuery] = useState("");
 
-        this.state = {
-            query: ''
-        };
-    }
-
-    handleInputChange = () => {
-        this.setState({
-            query: this.search.value
-        })
-    };
-
-    render() {
-        return (
-            <div className={styles.searchBar}>
-                <form>
-                    <img src={require('./search_icon.svg')}/>
-                    <input
-                        ref={input => this.search = input}
-                        onChange={this.handleInputChange}
-                    />
-                    <hr/>
-                </form>
-            </div>
-        )
-    }
-}
+  return (
+    <div className={styles.searchBar}>
+      <form>
+        {/*<img src={require('./search_icon.svg')}/>*/}
+        <input onChange={event => setQuery(event.target.value)} />
+        <hr />
+      </form>
+    </div>
+  );
+};
 
 export default SearchBar;

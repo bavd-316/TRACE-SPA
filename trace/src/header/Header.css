@@ -1,57 +1,57 @@
 :local(.header) {
-    display: block;
-    height: 165px;
-    background-color: #FFFFFF;
-    margin-bottom: 60px;
+  display: block;
+  height: 165px;
+  background-color: #ffffff;
+  margin-bottom: 60px;
 }
 
 :local(.logo) {
-    display: block;
-    position: relative;
-    margin: 0;
-    top: 20px;
-    font-size: 55px;
-    text-align: center;
+  display: block;
+  position: relative;
+  margin: 0;
+  top: 20px;
+  font-size: 55px;
+  text-align: center;
 }
 
 :local(.logo) span {
-    color: #b61924;
+  color: #b61924;
 }
 
 :local(.navbar) {
-    display: block;
-    position: relative;
-    top: 45px;
-    margin: auto;
-    height: 40px;
-    width: auto;
-    text-align: center;
+  display: block;
+  position: relative;
+  top: 45px;
+  margin: auto;
+  height: 40px;
+  width: auto;
+  text-align: center;
 }
 
 :local(.label) {
-    display: inline-block;
-    height: 40px;
-    margin: 0 10px;
+  display: inline-block;
+  height: 40px;
+  margin: 0 10px;
 }
 
 :local(.label) > p {
-    font-size: 20px;
-    margin: 5px;
+  font-size: 20px;
+  margin: 5px;
 }
 
 :local(.label) > hr {
-    text-align: center;
-    margin: 0 auto;
-    border: none;
-    width: 90%;
-    height: 5px;
+  text-align: center;
+  margin: 0 auto;
+  border: none;
+  width: 90%;
+  height: 5px;
 }
 
 :local(hr.active) {
-    color: #b61924;
-    background-color: #b61924;
+  color: #b61924;
+  background-color: #b61924;
 }
 
 :local(p.active) {
-    color: #b61924;
+  color: #b61924;
 }

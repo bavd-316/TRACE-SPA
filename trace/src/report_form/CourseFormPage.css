@@ -1,68 +1,68 @@
 :local(.button) {
-    display: block;
-    font-size: 20px;
-    color: #FFF;
-    padding: 10px 50px;
-    margin: 10px;
-    float: right;
-    background-color: #b61924;
+  display: block;
+  font-size: 20px;
+  color: #fff;
+  padding: 10px 50px;
+  margin: 10px;
+  float: right;
+  background-color: #b61924;
 }
 
 :local(.buttonCluster) {
-    display: block;
-    margin: auto;
-    height: 70px;
-    position: relative;
-    right: 10%;
+  display: block;
+  margin: auto;
+  height: 70px;
+  position: relative;
+  right: 10%;
 }
 
 :local(.sectionBar) {
-    /* 8px to include the borders */
-    width: 708px;
-    height: 30px;
-    margin: auto;
+  /* 8px to include the borders */
+  width: 708px;
+  height: 30px;
+  margin: auto;
 }
 
 :local(.sectionBar) > div:first-child {
-    -webkit-border-radius: 5px 0 0 5px;
-    -moz-border-radius: 5px 0 0 5px;
-    border-radius: 5px 0 0 5px;
+  -webkit-border-radius: 5px 0 0 5px;
+  -moz-border-radius: 5px 0 0 5px;
+  border-radius: 5px 0 0 5px;
 }
 
 :local(.sectionBar) > div:last-child {
-    -webkit-border-radius: 0 5px 5px 0;
-    -moz-border-radius: 0 5px 5px 0;
-    border-radius: 0 5px 5px 0;
+  -webkit-border-radius: 0 5px 5px 0;
+  -moz-border-radius: 0 5px 5px 0;
+  border-radius: 0 5px 5px 0;
 }
 
 :local(.sectionBar) > div {
-    display: inline-block;
-    width: 175px;
-    height: 100%;
-    margin: 0;
-    border: 1px solid #303030;
+  display: inline-block;
+  width: 175px;
+  height: 100%;
+  margin: 0;
+  border: 1px solid #303030;
 }
 
 :local(.active) {
-    background-color: #b61924;
+  background-color: #b61924;
 }
 
 :local(.form) {
-    -webkit-box-shadow: 0 3px 5px rgba(0, 0, 0, .2);
-    -moz-box-shadow: 0 3px 5px rgba(0, 0, 0, .2);
-    box-shadow: 0 3px 5px rgba(0, 0, 0, .2);
-    width: 70%;
-    margin: auto;
-    padding: 30px 0;
-    background-color: #FFFFFF;
+  -webkit-box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
+  width: 70%;
+  margin: auto;
+  padding: 30px 0;
+  background-color: #ffffff;
 }
 
 :local(.banner) {
-    -webkit-box-shadow: 0 3px 5px rgba(0, 0, 0, .2);
-    -moz-box-shadow: 0 3px 5px rgba(0, 0, 0, .2);
-    box-shadow: 0 3px 5px rgba(0, 0, 0, .2);
-    width: 70%;
-    height: 100px;
-    margin: 20px auto;
-    background-color: #b61924;
+  -webkit-box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
+  width: 70%;
+  height: 100px;
+  margin: 20px auto;
+  background-color: #b61924;
 }
