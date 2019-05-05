@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 import styles from './SearchBar.css';
+import SVG from 'react-inlinesvg';
+import KeyImage from './search_icon.svg';
 
 class SearchBar extends Component {
     constructor(props) {
@@ -20,7 +22,7 @@ class SearchBar extends Component {
         return (
             <div className={styles.searchBar}>
                 <form>
-                    <img src={require('./search_icon.svg')}/>
+                    <SVG src={KeyImage}/>
                     <input
                         ref={input => this.search = input}
                         onChange={this.handleInputChange}
