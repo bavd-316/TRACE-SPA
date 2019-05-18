@@ -1,12 +1,5 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styles from './SearchBar.css';
-
-const template = {
-	link: 'Report url',
-	title: 'title',
-	term: 'Fall 2019',
-	instructor: 'B. Lerner'
-};
 
 const SearchBar = ({ onChange }) => (
 	<div className={styles.searchBar}>

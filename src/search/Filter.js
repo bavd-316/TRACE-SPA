@@ -3,25 +3,7 @@ import styles from './Filter.css';
 import AsyncSelect from 'react-select/lib/Async';
 import axios from 'axios';
 
-
-const Dropdown = (name, options) => {
-    return (
-        <select className={styles.dropdown} name={name}>
-            <option value="" disabled selected>{name}</option>
-            {options.map((option) => {
-                return (
-                    <option value={option}>{option}</option>
-                )
-            })}
-        </select>
-    )
-};
-
-const Filter = () => {
-	const [terms, setTerms] = useState([]);
-	const [departments, setDepartments] = useState([]);
-	const [instructors, setInstructors] = useState([]);
-
+const Filter = ({setTerms, setDepartments, setInstructors}) => {
 	const departmentToString = d => `${d.title} (${d.code})`;
 	const termToString = t => t.title;
 	const instructorToString = i => `${i.first_name} ${i.last_name}`;
@@ -46,10 +28,6 @@ const Filter = () => {
 			)
 			.catch(ex => console.error(ex));
 	};
-
-	console.log(terms);
-	console.log(instructors);
-	console.log(departments);
 
 	return (
 		<div className={styles.filter}>
