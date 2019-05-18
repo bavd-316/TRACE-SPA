@@ -3,7 +3,7 @@ import styles from './Filter.css';
 import AsyncSelect from 'react-select/lib/Async';
 import axios from 'axios';
 
-const Filter = ({setTerms, setDepartments, setInstructors}) => {
+const Filter = ({ setTerms, setDepartments, setInstructors }) => {
 	const departmentToString = d => `${d.title} (${d.code})`;
 	const termToString = t => t.title;
 	const instructorToString = i => `${i.first_name} ${i.last_name}`;
