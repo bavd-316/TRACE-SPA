@@ -40,8 +40,8 @@ const Filter = ({ setTerms, setDepartments, setInstructors }) => {
 					placeholder={'Term'}
 					defaultOptions
 					cacheOptions={true}
-					loadOptions={val =>
-						getResults(val, 'term', termToString, false)
+					loadOptions={async val =>
+						await getResults(val, 'term', termToString, false)
 					}
 					onChange={e => setTerms(e)}
 				/>
