@@ -21,6 +21,7 @@
 
 :local(.dropdown) {
     border: 1px solid #303030;
+    color: #b61924;
     display: grid;
     grid-column:  span 1;
     height: 30px;
