@@ -1,17 +1,17 @@
 import React from 'react';
 import styles from './Header.css';
 
-const NavBar = ({ page }) => {
-	if (page.active) {
+const NavBar = ({ page, active, onClick }) => {
+	if (active) {
 		return (
-			<div className={styles.label}>
+			<div className={styles.label} onClick={onClick}>
 				<p className={styles.active}>{page.label}</p>
 				<hr className={styles.active} />
 			</div>
 		);
 	} else {
 		return (
-			<div className={styles.label}>
+			<div className={styles.label} onClick={onClick}>
 				<p>{page.label}</p>
 				<hr />
 			</div>
@@ -19,15 +19,19 @@ const NavBar = ({ page }) => {
 	}
 };
 
-const Header = ({ title, pages }) => (
+const Header = ({ pages, setActivePage, activePageIndex }) => (
 	<div className={styles.header}>
 		<p className={styles.logo}>
 			NU <span>TRACE</span>
 		</p>
-		{title && <h2 className={styles.title} />}
 		<div className={styles.navbar}>
-			{pages.map(page => (
-				<NavBar page={page} />
+			{pages.map((page, index) => (
+				<NavBar
+					key={`navbar-${page.label}`}
+					page={page}
+					active={index == activePageIndex}
+					onClick={e => setActivePage(index)}
+				/>
 			))}
 		</div>
 	</div>

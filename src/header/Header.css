@@ -32,6 +32,12 @@
     display: inline-block;
     height: 40px;
     margin: 0 10px;
+    cursor: pointer;
+}
+
+:local(.label):hover {
+    color: #b61924;
+    text-shadow: 1px 1px 1px #555;
 }
 
 :local(.label) > p {

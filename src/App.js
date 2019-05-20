@@ -1,26 +1,38 @@
-import React from 'react';
+import React, { useState } from 'react';
 import CourseFormPage from './report_form/CourseFormPage.js';
 import Header from './header/Header.js';
 import styles from './App.css';
-import SearchBar from './search/SearchBar.js';
 import SearchPage from './search/SearchPage';
+import DashboardPage from './dashboard/DashboardPage';
 
 const App = () => {
-	const title = null;
+	const [activePageIndex, setActivePageIndex] = useState(0);
 	const pages = [
 		{
-			active: true,
-			label: 'Dashboard'
+			label: 'Dashboard',
+			value: <DashboardPage />
 		},
 		{
-			active: false,
-			label: 'SearchBar'
+			label: 'Search',
+			value: <SearchPage />
+		},
+		{
+			label: 'Form',
+			value: <CourseFormPage />
+		},
+		{
+			label: 'Report',
+			value: <div>Report View</div>
 		}
 	];
 	return (
 		<div className={styles.app}>
-			<Header pages={pages} title={title} />
-			<SearchPage />
+			<Header
+				pages={pages}
+				setActivePage={setActivePageIndex}
+				activePageIndex={activePageIndex}
+			/>
+			{pages[activePageIndex].value}
 		</div>
 	);
 };
