@@ -10,16 +10,16 @@
 }
 
 :local(.searchBar) img {
-    height: 25px;
+    height: 35%;
     width: auto;
     margin-left: 1%;
 }
 
 :local(.searchBar) input {
-    width: 92%;
+    width: 85%;
     max-height: 50px;
     margin-top: 10px;
-    margin-left: 20px;
+    margin-left: 5%;
     font-size: 30px;
     font-weight: 100;
     border-color: transparent;
@@ -27,8 +27,4 @@
 
 :local(.searchBar) input:focus {
     outline-color: transparent;
-}
-
-:local(.searchBar) hr {
-    margin: 4px;
 }

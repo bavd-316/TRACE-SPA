@@ -1,7 +1,7 @@
 
 @font-face {
     font-family: "DecoType Naskh";
-    src: url("./DecoType Naskh.ttf") format('truetype');
+    src: url("DecoType Naskh.ttf") format('truetype');
 }
 body {
     margin: 0;
