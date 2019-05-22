@@ -1,37 +1,28 @@
 import React from 'react';
 import styles from './Header.css';
+import { NavLink } from 'react-router-dom';
 
-const NavBar = ({ page, active, onClick }) => {
-	if (active) {
-		return (
-			<div className={styles.label} onClick={onClick}>
-				<p className={styles.active}>{page.label}</p>
-				<hr className={styles.active} />
-			</div>
-		);
-	} else {
-		return (
-			<div className={styles.label} onClick={onClick}>
-				<p>{page.label}</p>
-				<hr />
-			</div>
-		);
-	}
-};
+const NavBar = ({ page }) => (
+	<React.Fragment>
+		<NavLink
+			className={styles.label}
+			activeClassName={styles.active}
+			exact={page.path === '/'}
+			to={page.path}
+		>
+			<p>{page.label}</p>
+		</NavLink>
+	</React.Fragment>
+);
 
-const Header = ({ pages, setActivePage, activePageIndex }) => (
+const Header = ({ urlLocation, pages }) => (
 	<div className={styles.header}>
 		<p className={styles.logo}>
 			NU <span>TRACE</span>
 		</p>
 		<div className={styles.navbar}>
-			{pages.map((page, index) => (
-				<NavBar
-					key={`navbar-${page.label}`}
-					page={page}
-					active={index == activePageIndex}
-					onClick={e => setActivePage(index)}
-				/>
+			{pages.map(page => (
+				<NavBar key={`navbar-${page.label}`} page={page} />
 			))}
 		</div>
 	</div>

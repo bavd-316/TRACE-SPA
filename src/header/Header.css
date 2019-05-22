@@ -33,6 +33,8 @@
     height: 40px;
     margin: 0 10px;
     cursor: pointer;
+    text-decoration: none;
+    color: black;
 }
 
 :local(.label):hover {
@@ -53,11 +55,6 @@
     height: 5px;
 }
 
-:local(hr.active) {
-    color: #b61924;
-    background-color: #b61924;
-}
-
-:local(p.active) {
+:local(.active) {
     color: #b61924;
 }
