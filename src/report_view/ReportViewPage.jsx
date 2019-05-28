@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { questionsByCategory } from './selectors';
+import lodashGet from 'lodash/get';
 
 const ReportViewPage = ({ match }) => {
 	const [report, setReport] = useState({});
@@ -13,7 +15,30 @@ const ReportViewPage = ({ match }) => {
 			.catch(ex => console.error(ex));
 	}, []);
 
-	return <div>{JSON.stringify(report, 4)}</div>;
+	const {
+		categories,
+		questionMapping: questionsCategoryMap
+	} = questionsByCategory(report.questions || []);
+
+	return Object.entries(questionsCategoryMap || {}).map(
+		([categoryId, questions]) => (
+			<React.Fragment>
+				<div>
+					<span>{categoryId}: </span>
+					{categories[categoryId].text}
+					<hr />
+				</div>
+				{(questions || []).map(q => (
+					<div style={{ display: 'flex' }}>
+						<div>{lodashGet(q, 'question.text')}</div>
+						<div>{'-'}</div>
+						<div>{q.mean}</div>
+					</div>
+				))}
+				<hr />
+			</React.Fragment>
+		)
+	);
 };
 
 export default ReportViewPage;
