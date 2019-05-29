@@ -12,7 +12,10 @@ const BAR_COLORS = [
 
 const generateChartData = responseQuestions => {
 	const chartData = { labels: [], datasets: [] };
-	const answerTextValRegex = /(\d|-\d)/;
+	// "Usually Effective (3)" -> "3"
+	// "Not (-1)" -> "-1"
+	// "9-12" -> "9"
+	const answerTextValRegex = /(\d+|-\d+)/;
 	for (let responseQuestion of responseQuestions) {
 		if (!chartData.labels.includes(responseQuestion.question.text)) {
 			chartData.labels.push(responseQuestion.question.text);
@@ -35,11 +38,11 @@ const generateChartData = responseQuestions => {
 	}
 
 	chartData.datasets = chartData.datasets
-		.sort((dsA, dsB) =>
-			(dsB.label.match(answerTextValRegex).pop() || '').localeCompare(
-				dsA.label.match(answerTextValRegex).pop() || ''
-			)
-		)
+		.sort((dsA, dsB) => {
+			const getSortProp = ds =>
+				parseInt(ds.label.match(answerTextValRegex).shift());
+			return getSortProp(dsB) - getSortProp(dsA);
+		})
 		.map((ds, ind) => ({
 			...ds,
 			backgroundColor: BAR_COLORS[ind % BAR_COLORS.length]
@@ -64,9 +67,6 @@ const CategoryChart = ({ category, responseQuestions }) => {
 					display: false,
 					stacked: true,
 					gridLines: {
-						display: false
-					},
-					ticks: {
 						display: false
 					}
 				}
