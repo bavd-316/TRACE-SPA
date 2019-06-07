@@ -3,6 +3,7 @@ import axios from 'axios';
 import { questionsByCategory } from './selectors';
 import lodashGet from 'lodash/get';
 import QuestionChart from './QuestionChart';
+import CommentsViewPage from './CommentsViewPage';
 
 const ReportViewPage = ({ match }) => {
 	const [report, setReport] = useState({});
@@ -21,30 +22,18 @@ const ReportViewPage = ({ match }) => {
 		questionMapping: questionsCategoryMap
 	} = questionsByCategory(report.questions || []);
 
-	return Object.entries(questionsCategoryMap || {}).map(
-		([categoryId, questions]) => (
-			<React.Fragment>
-				{/*<div>*/}
-				{/*<span>{categoryId}: </span>*/}
-				{/*{categories[categoryId].text}*/}
-				{/*<hr />*/}
-				{/*</div>*/}
-				{/*{(questions || []).map(q => (*/}
-				{/*<div style={{ display: 'flex' }}>*/}
-				{/*<div>{lodashGet(q, 'question.text')}</div>*/}
-				{/*<div>{'-'}</div>*/}
-				{/*<div>{q.mean}</div>*/}
-				{/*</div>*/}
-				{/*))}*/}
-				{/*<hr />*/}
-				<QuestionChart
-					category={categories[categoryId]}
-					responseQuestions={questions || []}
-				/>
-				<hr />
-			</React.Fragment>
-		)
-	);
+	// return Object.entries(questionsCategoryMap || {}).map(
+	// 	([categoryId, questions]) => (
+	// 		<React.Fragment>
+	// 			<QuestionChart
+	// 				category={categories[categoryId]}
+	// 				responseQuestions={questions || []}
+	// 			/>
+	// 			<hr />
+	// 		</React.Fragment>
+	// 	)
+	// );
+	return <CommentsViewPage comments={report.comments || []} />;
 };
 
 export default ReportViewPage;

@@ -54,9 +54,13 @@ const generateChartData = responseQuestions => {
 const CategoryChart = ({ category, responseQuestions }) => {
 	const chartData = generateChartData(responseQuestions);
 	const chartOptions = {
+		responsive: true,
 		title: {
 			display: true,
 			text: category.text
+		},
+		legend: {
+			display: false
 		},
 		tooltips: {
 			filter: item => item.value > 0
@@ -68,6 +72,9 @@ const CategoryChart = ({ category, responseQuestions }) => {
 					stacked: true,
 					gridLines: {
 						display: false
+					},
+					ticks: {
+						display: false
 					}
 				}
 			],
@@ -77,19 +84,28 @@ const CategoryChart = ({ category, responseQuestions }) => {
 					gridLines: {
 						display: false,
 						drawBorder: false
+					},
+					barThickness: 'flex',
+					maxBarThickness: 25,
+					barPercentage: 0.9,
+					categoryPercentage: 1.0,
+					ticks: {
+						display: false
 					}
 				}
 			]
 		}
 	};
 	return (
-		<div>
-			<BarChart
-				data={chartData}
-				options={chartOptions}
-				width="300px"
-				height="60px"
-			/>
+		<div
+			style={{
+				width: '750px',
+				display: 'block',
+				marginLeft: 'auto',
+				marginRight: 'auto'
+			}}
+		>
+			<BarChart data={chartData} options={chartOptions} />
 		</div>
 	);
 };
