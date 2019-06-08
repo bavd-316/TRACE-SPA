@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import Pagination, { DEFAULT_PAGE_SIZE } from '../common/Pagination';
+import { Link, withRouter } from 'react-router-dom';
 
-const CommentsViewPage = ({ comments }) => {
+const CommentsViewPage = ({ match, comments }) => {
 	const pageSize = DEFAULT_PAGE_SIZE;
 	const [pageComments, setPageComments] = useState(
 		comments.slice(0, pageSize)
@@ -18,6 +19,7 @@ const CommentsViewPage = ({ comments }) => {
 
 	return (
 		<div>
+			{/*<Link to={`/report/${match.params.id}`}>Overview</Link>*/}
 			{pageComments.map((comment, index) => (
 				<React.Fragment key={`view-comment-${index}`}>
 					<h5>{comment}</h5>

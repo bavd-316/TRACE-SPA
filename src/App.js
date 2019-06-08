@@ -4,43 +4,71 @@ import Header from './header/Header.js';
 import styles from './App.css';
 import SearchPage from './search/SearchPage';
 import DashboardPage from './dashboard/DashboardPage';
-import ReportViewPage from './report_view/ReportViewPage';
-import { Route, Switch } from 'react-router-dom';
+import ReportViewContainer from './report_view/ReportViewContainer';
+import PageRouter from './common/PageRouter';
+import ReportOverviewPage from './report_view/ReportOverviewPage';
+import CommentsViewPage from './report_view/CommentsViewPage';
 
 const App = () => {
-	const [activePageIndex, setActivePageIndex] = useState(0);
-	const pages = [
+	const routes = [
 		{
-			path: '/',
+			global: true,
 			label: 'Dashboard',
-			navigableTo: true
+			path: '/',
+			exact: true,
+			component: DashboardPage
 		},
 		{
-			path: '/search',
+			global: true,
 			label: 'Search',
-			navigableTo: true
+			path: '/search',
+			component: SearchPage
 		},
 		{
-			path: '/form',
-			label: 'Form',
-			navigableTo: false
+			label: 'Evaluation',
+			path: '/evaluation',
+			component: CourseFormPage
 		},
 		{
 			path: '/report/:id',
-			label: 'Report',
-			navigableTo: false
+			component: ReportViewContainer,
+			routes: [
+				{
+					label: 'Overview',
+					exact: true,
+					path: [
+						'/report/:id',
+						'/report/:id/',
+						'/report/:id/overview'
+					],
+					render: ({ report, props }) => {
+						console.log(props);
+						return (
+							<ReportOverviewPage
+								questions={report.questions || []}
+								{...props}
+							/>
+						);
+					}
+				},
+				{
+					label: 'Comments',
+					path: '/report/:id/comments',
+					render: ({ report, props }) => (
+						<CommentsViewPage
+							comments={report.comments || []}
+							{...props}
+						/>
+					)
+				}
+			]
 		}
 	];
 
 	return (
 		<div className={styles.app}>
-			<Header pages={pages} />
-			<Switch>
-				<Route exact path={'/'} component={DashboardPage} />
-				<Route path={'/search'} component={SearchPage} />
-				<Route path={'/form'} component={CourseFormPage} />
-				<Route path={'/report/:id'} component={ReportViewPage} />
-			</Switch>
+			<Header pages={routes} />
+			<PageRouter routes={routes} />
 		</div>
 	);
 };

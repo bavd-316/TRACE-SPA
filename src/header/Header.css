@@ -55,6 +55,7 @@
     height: 5px;
 }
 
-:local(.active) {
+:local(.label) > .active {
     color: #b61924;
+    font-weight: bolder;
 }

@@ -1,30 +1,99 @@
 import React from 'react';
 import styles from './Header.css';
-import { NavLink } from 'react-router-dom';
+import {
+	generatePath,
+	Link,
+	matchPath,
+	Route,
+	withRouter
+} from 'react-router-dom';
 
-const NavBar = ({ page }) => (
-	<React.Fragment>
-		<NavLink
-			className={styles.label}
-			activeClassName={styles.active}
-			exact={page.path === '/'}
-			to={page.path}
-		>
-			<p>{page.label}</p>
-		</NavLink>
-	</React.Fragment>
+const NavItem = ({ location, match, path, relPath, label, ...props }) => {
+	const grabFirstIfArray = p => (Array.isArray(p) ? p[0] || null : p || null);
+	let linkPath = grabFirstIfArray(path);
+	let isActive = false;
+	if (!linkPath) {
+		linkPath =
+			path ||
+			generatePath(grabFirstIfArray(relPath) || '/', match.params);
+		isActive = matchPath(location.pathname, { exact: true, path: relPath });
+	} else {
+		isActive =
+			location.pathname === path ||
+			(Array.isArray(path) && path.includes(location.pathname));
+	}
+	return (
+		<React.Fragment>
+			<Link className={styles.label} to={linkPath}>
+				<React.Fragment>
+					<p className={isActive ? 'active' : ''}>{label}</p>
+				</React.Fragment>
+			</Link>
+		</React.Fragment>
+	);
+};
+
+const NavMultiItem = ({ page }) => {
+	if (!(page.routes || []).length) {
+		if (page.global) {
+			return (
+				<Route
+					render={props => (
+						<NavItem
+							{...props}
+							label={page.label}
+							path={page.path}
+						/>
+					)}
+				/>
+			);
+		} else {
+			console.log(page);
+			return (
+				<Route
+					path={page.path}
+					render={props => (
+						<NavItem
+							{...props}
+							relPath={page.path}
+							label={page.label}
+						/>
+					)}
+				/>
+			);
+		}
+	} else {
+		return (
+			<Route
+				path={page.path}
+				render={props =>
+					page.routes.map(route => (
+						<NavItem
+							{...props}
+							label={route.label}
+							relPath={route.path}
+						/>
+					))
+				}
+			/>
+		);
+	}
+};
+
+const NavBar = ({ pages }) => (
+	<div className={styles.navbar}>
+		{pages.map((page, index) => (
+			<NavMultiItem page={page} />
+		))}
+	</div>
 );
 
-const Header = ({ urlLocation, pages }) => (
+const Header = ({ pages }) => (
 	<div className={styles.header}>
 		<p className={styles.logo}>
 			NU <span>TRACE</span>
 		</p>
-		<div className={styles.navbar}>
-			{pages.map(page => (
-				<NavBar key={`navbar-${page.label}`} page={page} />
-			))}
-		</div>
+		<NavBar pages={pages} />
 	</div>
 );
 
