@@ -41,15 +41,12 @@ const App = () => {
 						'/report/:id/',
 						'/report/:id/overview'
 					],
-					render: ({ report, props }) => {
-						console.log(props);
-						return (
-							<ReportOverviewPage
-								questions={report.questions || []}
-								{...props}
-							/>
-						);
-					}
+					render: ({ report, props }) => (
+						<ReportOverviewPage
+							questions={report.questions || []}
+							{...props}
+						/>
+					)
 				},
 				{
 					label: 'Comments',
