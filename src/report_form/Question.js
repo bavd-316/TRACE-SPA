@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import styles from './Question.css';
 
+// TODO: Order Answers/Clean up answers
 const Question = ({ question, answers }) => {
 	const [selectedOption, setSelectedOption] = useState(null);
 

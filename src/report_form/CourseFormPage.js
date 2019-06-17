@@ -16,8 +16,8 @@ const CompletionBar = ({ index, length }) => (
 	</div>
 );
 
+// TODO: Compile form draft with data
 const CourseFormPage = ({ match, ...props }) => {
-	console.log(match);
 	const [index, setIndex] = useState(0);
 	const [course, setCourse] = useState({});
 	const [categories, setCategories] = useState([]);

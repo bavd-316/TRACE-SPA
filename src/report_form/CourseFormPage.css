@@ -35,9 +35,11 @@
     border-radius: 0 5px 5px 0;
 }
 
+
 :local(.sectionBar) > div {
     display: inline-block;
-    width: 175px;
+    /* TODO: Fix width to match needed # of bar segments */
+    width: 19%;
     height: 100%;
     margin: 0;
     border: 1px solid #303030;
