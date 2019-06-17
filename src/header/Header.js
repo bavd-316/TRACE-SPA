@@ -48,7 +48,6 @@ const NavMultiItem = ({ page }) => {
 				/>
 			);
 		} else {
-			console.log(page);
 			return (
 				<Route
 					path={page.path}

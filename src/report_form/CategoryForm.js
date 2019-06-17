@@ -1,19 +1,19 @@
 import React from 'react';
-import styles from './CourseForm.css';
+import styles from './CategoryForm.css';
 import Question from './Question.js';
 
-const CourseForm = ({ title, questionList }) => (
+const CategoryForm = ({ title, questions, answers }) => (
 	<div className={styles.container}>
 		<div className={styles.title}>
 			<h2>{title}</h2>
 			<p>Please answer these questions about your course.</p>
 		</div>
 		<div className={styles.questions}>
-			{questionList.map(question => (
-				<Question question={question} />
+			{questions.map(question => (
+				<Question question={question} answers={answers} />
 			))}
 		</div>
 	</div>
 );
 
-export default CourseForm;
+export default CategoryForm;

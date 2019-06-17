@@ -1,112 +1,94 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from './CourseFormPage.css';
-import CourseForm from './CourseForm';
+import lodashIsEmpty from 'lodash/isEmpty';
+import lodashRange from 'lodash/range';
+import axios from 'axios';
+import CategoryForm from './CategoryForm';
 
-class CourseFormPage extends Component {
-	constructor(props) {
-		super(props);
-		this.state = {
-			index: 0,
-			questions: {
-				'Course Related Questions': [
-					'Question1',
-					'Question2',
-					'Question3',
-					'Question4',
-					'Question5'
-				],
-				'Instructor Related Questions': [
-					'Question6',
-					'Question7',
-					'Question8'
-				],
-				'Stupid Questions': [
-					'Question9',
-					'Question10',
-					'Question11',
-					'Question12',
-					'Question13',
-					'Question14',
-					'Question15',
-					'Question16'
-				],
-				'Last Page': ['Question17']
-			}
-		};
-	}
+const CompletionBar = ({ index, length }) => (
+	<div className={styles.sectionBar}>
+		{lodashRange(0, length).map(ind => (
+			<div
+				className={ind >= index ? styles.active : null}
+				key={`${ind}`}
+			/>
+		))}
+	</div>
+);
 
-	getQuestionKey = () => {
-		let keys = Object.keys(this.state.questions);
-		return keys[this.state.index];
-	};
+const CourseFormPage = ({ match, ...props }) => {
+	console.log(match);
+	const [index, setIndex] = useState(0);
+	const [course, setCourse] = useState({});
+	const [categories, setCategories] = useState([]);
 
-	nextPage = () => {
-		let page = this.state.index + 1;
-		if (page === Object.keys(this.state.questions).length) {
-			alert('Done');
-		} else {
-			this.setState({ index: page });
+	useEffect(() => {
+		if (lodashIsEmpty(course)) {
+			console.log('loaded');
+			axios
+				.get(
+					`http://127.0.0.1:5000/api/v1/course/${
+						match.params.courseId
+					}`
+				)
+				.then(res => {
+					const resp_course = res.data;
+					setCourse(resp_course);
+					axios
+						.get(
+							`http://127.0.0.1:5000/api/v1/term/${
+								resp_course.term.id
+							}/categories`
+						)
+						.then(r => setCategories(r.data.data))
+						.catch(ex => console.error(ex));
+				})
+				.catch(ex => console.error(ex));
 		}
-	};
+	}, [match.params.courseId]);
 
-	prevPage = () => {
-		let page = this.state.index - 1;
-		this.setState({ index: page });
-	};
-
-	getQuestionList = () => {
-		let questions = this.state.questions[this.getQuestionKey()];
-		return questions;
-	};
-
-	renderCompletionBar = () => {
-		let spanList = [];
-		for (let i = 0; i < Object.keys(this.state.questions).length; i++) {
-			if (this.state.index >= i) {
-				spanList.push(styles.active);
-			} else {
-				spanList.push(null);
-			}
-		}
-		return (
-			<div className={styles.sectionBar}>
-				{spanList.map(status => {
-					return <div className={status} />;
-				})}
-			</div>
-		);
-	};
-
-	render() {
-		return (
-			<div>
-				<div className={styles.banner} />
-				<div className={styles.form}>
-					{this.renderCompletionBar()}
-					<CourseForm
-						title={this.getQuestionKey()}
-						questionList={this.getQuestionList()}
-					/>
-					<div className={styles.buttonCluster}>
-						<button
-							className={styles.button}
-							onClick={this.nextPage}
-						>
-							{this.state.index < 3 ? 'Next' : 'Done'}
-						</button>
-						{this.state.index > 0 ? (
+	return categories.length ? (
+		<div>
+			{index < categories.length ? (
+				<React.Fragment>
+					<div className={styles.banner} />
+					<div className={styles.form}>
+						<CompletionBar
+							index={index}
+							length={categories.length}
+						/>
+						<CategoryForm
+							title={categories[index].text}
+							questions={categories[index].questions}
+							answers={categories[index].answers}
+						/>
+						<div className={styles.buttonCluster}>
 							<button
 								className={styles.button}
-								onClick={this.prevPage}
+								onClick={() => setIndex(index + 1)}
 							>
-								Prev
+								{index < categories.length - 1
+									? 'Next'
+									: 'Done'}
 							</button>
-						) : null}
+							{index > 0 && (
+								<button
+									className={styles.button}
+									onClick={() => setIndex(index - 1)}
+								>
+									Prev
+								</button>
+							)}
+						</div>
 					</div>
-				</div>
-			</div>
-		);
-	}
-}
+				</React.Fragment>
+			) : (
+				<div>Form Submitted</div>
+			)}
+		</div>
+	) : (
+		<div>Loading...</div>
+	);
+};
 
 export default CourseFormPage;

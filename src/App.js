@@ -26,7 +26,7 @@ const App = () => {
 		},
 		{
 			label: 'Evaluation',
-			path: '/evaluation',
+			path: '/evaluation/:courseId',
 			component: CourseFormPage
 		},
 		{

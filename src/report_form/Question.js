@@ -1,23 +1,15 @@
 import React, { useState } from 'react';
 import styles from './Question.css';
 
-const Question = ({ question }) => {
-	const [selectedOption, setSelectedOption] = useState('Not Applicable');
+const Question = ({ question, answers }) => {
+	const [selectedOption, setSelectedOption] = useState(null);
 
-	const options = [
-		'Strongly Agree',
-		'Agree',
-		'Neutral',
-		'Disagree',
-		'Strongly Disagree',
-		'Not Applicable'
-	];
 	return (
 		<div className={styles.row}>
-			<h4>{question}</h4>
+			<h4>{question.text}</h4>
 			<div className={styles.form}>
 				<form>
-					{options.map(option => (
+					{answers.map(option => (
 						<div className={styles.check}>
 							<label>
 								<input
@@ -28,6 +20,7 @@ const Question = ({ question }) => {
 									onChange={event =>
 										setSelectedOption(event.target.value)
 									}
+									required={true}
 								/>
 								{option}
 							</label>
