@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styles from './CourseFormPage.css';
 import lodashIsEmpty from 'lodash/isEmpty';
+import lodashRandom from 'lodash/random';
 import lodashRange from 'lodash/range';
 import axios from 'axios';
 import CategoryForm from './CategoryForm';
@@ -21,8 +22,20 @@ const CourseFormPage = ({ match, ...props }) => {
 	const [course, setCourse] = useState({});
 	const [categories, setCategories] = useState([]);
 	const [draft, setDraft] = useState({});
+	const [submitted, setSubmitted] = useState(false);
 
 	const editDraft = responseEntry => setDraft({ ...draft, ...responseEntry });
+	const saveDraft = () =>
+		axios
+			.post(
+				`http://127.0.0.1:5000/api/v1/course/${
+					course.id
+					// Random User because we don't have those yet
+				}/response/${lodashRandom(1, 1000000)}`,
+				draft
+			)
+			.then(r => setSubmitted(true))
+			.catch(ex => console.error(ex));
 
 	useEffect(() => {
 		if (lodashIsEmpty(course)) {
@@ -50,7 +63,7 @@ const CourseFormPage = ({ match, ...props }) => {
 
 	return categories.length ? (
 		<div>
-			{index < categories.length ? (
+			{!submitted ? (
 				<React.Fragment>
 					<div className={styles.banner} />
 					<div className={styles.form}>
@@ -68,12 +81,11 @@ const CourseFormPage = ({ match, ...props }) => {
 						<div className={styles.buttonCluster}>
 							<button
 								className={styles.button}
-								onClick={() => {
-									setIndex(index + 1);
-									if (index === categories.length - 1) {
-										console.log(draft);
-									}
-								}}
+								onClick={() =>
+									index === categories.length - 1
+										? saveDraft()
+										: setIndex(index + 1)
+								}
 							>
 								{index < categories.length - 1
 									? 'Next'
