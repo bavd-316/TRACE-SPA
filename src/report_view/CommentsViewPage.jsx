@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import Pagination, { DEFAULT_PAGE_SIZE } from '../common/Pagination';
-import { Link, withRouter } from 'react-router-dom';
 
 const CommentsViewPage = ({ match, comments }) => {
 	const pageSize = DEFAULT_PAGE_SIZE;

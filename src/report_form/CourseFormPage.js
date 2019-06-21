@@ -16,15 +16,16 @@ const CompletionBar = ({ index, length }) => (
 	</div>
 );
 
-// TODO: Compile form draft with data
 const CourseFormPage = ({ match, ...props }) => {
 	const [index, setIndex] = useState(0);
 	const [course, setCourse] = useState({});
 	const [categories, setCategories] = useState([]);
+	const [draft, setDraft] = useState({});
+
+	const editDraft = responseEntry => setDraft({ ...draft, ...responseEntry });
 
 	useEffect(() => {
 		if (lodashIsEmpty(course)) {
-			console.log('loaded');
 			axios
 				.get(
 					`http://127.0.0.1:5000/api/v1/course/${
@@ -61,11 +62,18 @@ const CourseFormPage = ({ match, ...props }) => {
 							title={categories[index].text}
 							questions={categories[index].questions}
 							answers={categories[index].answers}
+							editDraft={editDraft}
+							draft={draft}
 						/>
 						<div className={styles.buttonCluster}>
 							<button
 								className={styles.button}
-								onClick={() => setIndex(index + 1)}
+								onClick={() => {
+									setIndex(index + 1);
+									if (index === categories.length - 1) {
+										console.log(draft);
+									}
+								}}
 							>
 								{index < categories.length - 1
 									? 'Next'

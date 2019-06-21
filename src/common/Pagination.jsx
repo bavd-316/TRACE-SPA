@@ -36,9 +36,9 @@ const Pagination = ({
 		const diff = maxPage - minPage;
 		if (diff < totalPages) {
 			const adjustment = maxNumButtons - (diff + 1);
-			if (minPage == 1 && adjustment > 0) {
+			if (minPage === 1 && adjustment > 0) {
 				maxPage = Math.min(maxPage + adjustment, totalPages);
-			} else if (maxPage == totalPages && adjustment > 0) {
+			} else if (maxPage === totalPages && adjustment > 0) {
 				minPage = Math.max(minPage - adjustment, 1);
 			}
 		}
@@ -50,11 +50,11 @@ const Pagination = ({
 
 	return (
 		<div>
-			<button disabled={pages[0] == 1} onClick={() => changePage(1)}>
+			<button disabled={pages[0] === 1} onClick={() => changePage(1)}>
 				{'<<'}
 			</button>
 			<button
-				disabled={pages[0] == 1}
+				disabled={pages[0] === 1}
 				onClick={() => changePage(page - 1)}
 			>
 				{'<'}
@@ -68,13 +68,13 @@ const Pagination = ({
 				</button>
 			))}
 			<button
-				disabled={pages[pages.length - 1] == totalPages}
+				disabled={pages[pages.length - 1] === totalPages}
 				onClick={() => changePage(page + 1)}
 			>
 				{'>'}
 			</button>
 			<button
-				disabled={pages[pages.length - 1] == totalPages}
+				disabled={pages[pages.length - 1] === totalPages}
 				onClick={() => changePage(totalPages)}
 			>
 				{'>>'}

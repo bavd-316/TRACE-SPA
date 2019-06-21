@@ -22,11 +22,11 @@ const generateChartData = responseQuestions => {
 		}
 		for (let responseAnswer of responseQuestion.answers) {
 			const answerDataSetIndex = chartData.datasets.findIndex(
-				ds => ds.label === responseAnswer.answer
+				ds => ds.label === responseAnswer.answer.text
 			);
 			if (answerDataSetIndex === -1) {
 				chartData.datasets.push({
-					label: responseAnswer.answer,
+					label: responseAnswer.answer.text,
 					data: [responseAnswer.value]
 				});
 			} else {

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import CourseFormPage from './report_form/CourseFormPage.js';
 import Header from './header/Header.js';
 import styles from './App.css';

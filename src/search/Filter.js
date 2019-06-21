@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styles from './Filter.css';
 import AsyncSelect from 'react-select/lib/Async';
 import axios from 'axios';

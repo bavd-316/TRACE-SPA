@@ -1,5 +1,3 @@
-import lodashGroupBy from 'lodash/groupBy';
-
 export const questionsByCategory = questions => {
 	const questionMapping = {};
 	const categoryMapping = {};

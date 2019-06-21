@@ -1,12 +1,6 @@
 import React from 'react';
 import styles from './Header.css';
-import {
-	generatePath,
-	Link,
-	matchPath,
-	Route,
-	withRouter
-} from 'react-router-dom';
+import { generatePath, Link, matchPath, Route } from 'react-router-dom';
 
 const NavItem = ({ location, match, path, relPath, label, ...props }) => {
 	const grabFirstIfArray = p => (Array.isArray(p) ? p[0] || null : p || null);
@@ -82,7 +76,7 @@ const NavMultiItem = ({ page }) => {
 const NavBar = ({ pages }) => (
 	<div className={styles.navbar}>
 		{pages.map((page, index) => (
-			<NavMultiItem page={page} />
+			<NavMultiItem key={`${index}`} page={page} />
 		))}
 	</div>
 );
