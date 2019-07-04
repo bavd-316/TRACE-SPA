@@ -1,0 +1,9 @@
+:local(.reportOverviewPage) {
+  width: 70rem;
+  margin: auto;
+}
+
+:local(.container) {
+  width: 100%;
+  margin: 1rem auto;
+}

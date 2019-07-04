@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import lodashRange from 'lodash/range';
+import styles from './Pagination.css';
 
-export const DEFAULT_PAGE_SIZE = 10;
+export const DEFAULT_PAGE_SIZE = 5;
 
 const Pagination = ({
 	totalPages = null,
@@ -49,36 +50,38 @@ const Pagination = ({
 	const pages = getPageButtons();
 
 	return (
-		<div>
-			<button disabled={pages[0] == 1} onClick={() => changePage(1)}>
-				{'<<'}
-			</button>
-			<button
-				disabled={pages[0] == 1}
-				onClick={() => changePage(page - 1)}
-			>
-				{'<'}
-			</button>
-			{pages.map(pageNum => (
-				<button
-					key={`page-num-button-${pageNum}`}
-					onClick={() => changePage(pageNum)}
-				>
-					{pageNum}
+		<div className={styles.paginator}>
+			<div>
+				<button disabled={pages[0] == 1} onClick={() => changePage(1)}>
+					{'<<'}
 				</button>
-			))}
-			<button
-				disabled={pages[pages.length - 1] == totalPages}
-				onClick={() => changePage(page + 1)}
-			>
-				{'>'}
-			</button>
-			<button
-				disabled={pages[pages.length - 1] == totalPages}
-				onClick={() => changePage(totalPages)}
-			>
-				{'>>'}
-			</button>
+				<button
+					disabled={pages[0] == 1}
+					onClick={() => changePage(page - 1)}
+				>
+					{'<'}
+				</button>
+				{pages.map(pageNum => (
+					<button
+						key={`page-num-button-${pageNum}`}
+						onClick={() => changePage(pageNum)}
+					>
+						{pageNum}
+					</button>
+				))}
+				<button
+					disabled={pages[pages.length - 1] == totalPages}
+					onClick={() => changePage(page + 1)}
+				>
+					{'>'}
+				</button>
+				<button
+					disabled={pages[pages.length - 1] == totalPages}
+					onClick={() => changePage(totalPages)}
+				>
+					{'>>'}
+				</button>
+			</div>
 		</div>
 	);
 };

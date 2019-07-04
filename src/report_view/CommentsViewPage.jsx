@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Pagination, { DEFAULT_PAGE_SIZE } from '../common/Pagination';
 import { Link, withRouter } from 'react-router-dom';
+import styles from './CommentsViewPage.css';
 
 const CommentsViewPage = ({ match, comments }) => {
 	const pageSize = DEFAULT_PAGE_SIZE;
@@ -18,12 +19,13 @@ const CommentsViewPage = ({ match, comments }) => {
 	};
 
 	return (
-		<div>
-			{/*<Link to={`/report/${match.params.id}`}>Overview</Link>*/}
+		<div className={styles.commentsPage}>
 			{pageComments.map((comment, index) => (
 				<React.Fragment key={`view-comment-${index}`}>
-					<h5>{comment}</h5>
-					<hr />
+					<div className={styles.commentBox}>
+						<p>{comment}</p>
+						<hr />
+					</div>
 				</React.Fragment>
 			))}
 			<br />

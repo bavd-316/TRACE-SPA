@@ -10,7 +10,7 @@ const ReportViewContainer = ({ match, routes }) => {
 			console.log('loaded');
 			axios
 				.get(
-					`http://127.0.0.1:5000/api/v1/course/${
+					`https://0dliwphpyd.execute-api.us-east-1.amazonaws.com/master/api/v1/course/${
 						match.params.id
 					}/scores`
 				)

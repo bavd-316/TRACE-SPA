@@ -3,16 +3,24 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "apexcharts": "^3.8.0",
     "axios": "^0.18.0",
     "chart.js": "^2.8.0",
+    "chartjs-plugin-annotation": "^0.5.7",
+    "chartjs-plugin-datalabels": "^0.6.0",
     "lodash": "^4.17.11",
     "react": "^16.8.6",
+    "react-apexcharts": "^1.3.3",
     "react-chartjs-2": "^2.7.6",
+    "react-css-grid": "^2.0.0-0",
     "react-dom": "^16.8.6",
     "react-inlinesvg": "^0.8.4",
     "react-router-dom": "^5.0.0",
     "react-scripts": "2.1.8",
     "react-select": "^2.4.3"
+  },
+  "config": {
+    "api": "https://0dliwphpyd.execute-api.us-east-1.amazonaws.com/master"
   },
   "scripts": {
     "start": "react-scripts start",

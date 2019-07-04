@@ -1,0 +1,67 @@
+:local(.grid) {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  grid-gap: 1rem;
+  max-width: 70rem;
+  margin: auto;
+}
+
+:local(.coursebox) {
+  font-size: 0.85rem;
+  grid-column: auto / span 1;
+  padding: 1rem;
+  background-color: #b61924;
+  text-align: center;
+  color: white;
+}
+
+:local(.metadata) {
+  max-width: 13rem;
+  margin: auto;
+  text-align: left;
+}
+
+:local(.metadata) span {
+  float: right;
+}
+
+:local(.infobox) {
+  grid-column: span 2;
+  display: block;
+  padding: 1rem;
+  max-height: 15rem;
+  max-width: 32.5rem;
+  background-color: white;
+}
+
+:local(.infobox) h2 {
+  font-size: 1.2rem;
+  margin-top: 0;
+  text-align: center;
+  color: gray;
+  text-transform: uppercase;
+}
+
+:local(.infobox) hr {
+  color: gray;
+  background-color: gray;
+}
+
+:local(.infobox) p {
+  max-width: 30rem;
+  margin: 1.5rem auto;
+  font-size: 0.9rem;
+}
+
+:local(.infocontent) {
+  max-height: 10rem;
+}
+
+:local(.infobox) span {
+  margin: 0;
+}
+
+:local(.course) {
+  margin: 1.5rem auto;
+}
