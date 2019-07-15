@@ -1,0 +1,11 @@
+:local(.paginator) div {
+  margin: auto;
+  width: 20rem;
+}
+
+:local(.paginator) button {
+  border: none;
+  padding: 1rem;
+  background-color: white;
+  margin: auto;
+}

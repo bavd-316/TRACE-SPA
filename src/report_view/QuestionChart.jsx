@@ -1,5 +1,7 @@
-import React from 'react';
-import { HorizontalBar as BarChart } from 'react-chartjs-2';
+import React, {useRef, useEffect, useState} from 'react';
+import styles from './QuestionChart.css';
+import { HorizontalBar } from 'react-chartjs-2';
+import 'chartjs-plugin-annotation';
 
 const BAR_COLORS = [
 	'#91141c',
@@ -9,6 +11,49 @@ const BAR_COLORS = [
 	'#e1a3a7',
 	'#f0d1d3'
 ];
+
+var chartOptions = {
+	responsive: false,
+	animation: false,
+	legend: {
+		display: false,
+		position: 'bottom'
+	},
+	tooltips: {
+		enabled: false
+	},
+	scales: {
+		xAxes: [
+			{
+				id: 'x-axis',
+				display: false,
+				stacked: true,
+				gridLines: {
+					display: false
+				},
+				ticks: {
+					display: false
+				}
+			}
+		],
+		yAxes: [
+			{
+				id: 'y-axis',
+				stacked: true,
+				gridLines: {
+					display: false,
+					drawBorder: false
+				},
+				maxBarThickness: 20,
+				barPercentage: 1.0,
+				categoryPercentage: 1.0,
+				ticks: {
+					display: false
+				}
+			}
+		]
+	}
+};
 
 const generateChartData = responseQuestions => {
 	const chartData = { labels: [], datasets: [] };
@@ -51,63 +96,64 @@ const generateChartData = responseQuestions => {
 	return chartData;
 };
 
-const CategoryChart = ({ category, responseQuestions }) => {
-	const chartData = generateChartData(responseQuestions);
-	const chartOptions = {
-		responsive: true,
-		title: {
-			display: true,
-			text: category.text
-		},
-		legend: {
-			display: false
-		},
-		tooltips: {
-			filter: item => item.value > 0
-		},
-		scales: {
-			xAxes: [
-				{
-					display: false,
-					stacked: true,
-					gridLines: {
-						display: false
-					},
-					ticks: {
-						display: false
-					}
-				}
-			],
-			yAxes: [
-				{
-					stacked: true,
-					gridLines: {
-						display: false,
-						drawBorder: false
-					},
-					barThickness: 'flex',
-					maxBarThickness: 25,
-					barPercentage: 0.9,
-					categoryPercentage: 1.0,
-					ticks: {
-						display: false
-					}
-				}
-			]
+const generateCleanData = chartData => {
+	var cleanChartData = [];
+	for (var i = 0; i < chartData.labels.length; i++) {
+		var cleanData = {
+			labels: [chartData.labels[i]],
+			datasets: []
 		}
-	};
+		for (let dataset of chartData.datasets) {
+			var cleanDataSet = {
+				backgroundColor: dataset.backgroundColor,
+				data: [dataset.data[i]],
+				label: dataset.label
+			}
+			cleanData.datasets.push(cleanDataSet);
+		}
+		cleanChartData.push(cleanData);
+	}
+	return cleanChartData;
+}
+
+const QuestionBar = (chartDataGroup) => {
 	return (
 		<div
+			className={styles.questionBar}
 			style={{
-				width: '750px',
-				display: 'block',
-				marginLeft: 'auto',
-				marginRight: 'auto'
-			}}
-		>
-			<BarChart data={chartData} options={chartOptions} />
+				top: '-1.5rem',
+				position: 'relative',
+				maxWidth: '65rem'}}>
+			<p style={{
+				position: 'relative',
+				top: '1rem'}}>
+				{chartDataGroup.labels[0]}
+			</p>
+			<HorizontalBar
+				height={35}
+				width={700}
+				data={chartDataGroup}
+				options={chartOptions}
+			/>
 		</div>
-	);
+	)
+}
+
+const CategoryChart = ({ category, responseQuestions }) => {
+	const chartData = generateChartData(responseQuestions);
+	const cleanChartData = generateCleanData(chartData);
+	const title = category.text.toUpperCase();
+
+
+
+	return (
+		<div className={styles.chartContainer}>
+			<h3>{title}</h3>
+			{cleanChartData.map((chartDataGroup) => {
+				return QuestionBar(chartDataGroup)
+			})}
+		</div>
+	)
 };
 
 export default CategoryChart;

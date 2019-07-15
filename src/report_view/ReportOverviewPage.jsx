@@ -3,7 +3,9 @@ import axios from 'axios';
 import { questionsByCategory } from './selectors';
 import QuestionChart from './QuestionChart';
 import CommentsViewPage from './CommentsViewPage';
+import InstructorBox from './InstructorBox';
 import { Link, withRouter } from 'react-router-dom';
+import styles from './ReportOverviewPage.css';
 
 const ReportOverviewPage = ({ match, questions }) => {
 	const {
@@ -11,21 +13,30 @@ const ReportOverviewPage = ({ match, questions }) => {
 		questionMapping: questionsCategoryMap
 	} = questionsByCategory(questions || []);
 
-	return (
-		<React.Fragment>
-			{/*<Link to={`/report/${match.params.id}/comments`}>Comments</Link>*/}
-			{Object.entries(questionsCategoryMap || {}).map(
-				([categoryId, questions]) => (
-					<React.Fragment key={`${categoryId}`}>
+	const chartContainers = Object.entries(questionsCategoryMap || {}).map(
+		([categoryId, questions]) => (
 						<QuestionChart
+							key={`${categoryId}`}
 							category={categories[categoryId]}
 							responseQuestions={questions || []}
 						/>
-						<hr />
-					</React.Fragment>
-				)
-			)}
-		</React.Fragment>
+		)
+	)
+	console.log(questionsCategoryMap);
+
+	return (
+		<div className={styles.reportOverviewPage}>
+			{chartContainers.map((chart) => {
+					return (
+						<div className={styles.container}>
+							<div>
+								{chart}
+							</div>
+						</div>
+					)
+				})
+			}
+		</div>
 	);
 };
 

@@ -38,8 +38,7 @@
 }
 
 :local(.label):hover {
-    color: #b61924;
-    text-shadow: 1px 1px 1px #555;
+    color: #db2936;
 }
 
 :local(.label) > p {
@@ -57,5 +56,4 @@
 
 :local(.label) > .active {
     color: #b61924;
-    font-weight: bolder;
 }

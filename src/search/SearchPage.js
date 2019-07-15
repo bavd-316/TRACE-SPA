@@ -42,7 +42,7 @@ const SearchPage = props => {
 		if (!query.trim()) return;
 		axios
 			.get(
-				`http://127.0.0.1:5000/api/v1/course?query=${query}&term_id=${getIDCommaStr(
+				`https://0dliwphpyd.execute-api.us-east-1.amazonaws.com/master/api/v1/course?query=${query}&term_id=${getIDCommaStr(
 					terms
 				)}&instructor_id=${getIDCommaStr(
 					instructors
@@ -84,14 +84,6 @@ const SearchPage = props => {
 					</div>
 				</div>
 			</div>
-			{/*<div className={styles.recentReports}>*/}
-			{/*<div className={styles.reports}>*/}
-			{/*<CourseListing*/}
-			{/*title={'RECENTLY VIEWED REPORTS'}*/}
-			{/*courses={results}*/}
-			{/*/>*/}
-			{/*</div>*/}
-			{/*</div>*/}
 		</div>
 	);
 };

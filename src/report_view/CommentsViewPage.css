@@ -1,0 +1,14 @@
+:local(.commentsPage) {
+  max-width: 70rem;
+  margin: auto;
+}
+
+:local(.commentBox) {
+  background-color: white;
+  padding: 1rem 2rem;
+  margin: 1rem;
+}
+
+:local(.commentBox) p {
+  font-size: 1rem;
+}

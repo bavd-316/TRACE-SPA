@@ -18,7 +18,7 @@
 :local(.searchBar) input {
     width: 85%;
     max-height: 50px;
-    margin-top: 10px;
+    margin-top: 20px;
     margin-left: 5%;
     font-size: 30px;
     font-weight: 100;

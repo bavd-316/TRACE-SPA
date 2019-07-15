@@ -16,7 +16,7 @@ const parseOptions = options =>
 
 const getOptions = inputValue => {
 	return axios
-		.get(`http://127.0.0.1:5000/api/v1/course?query=${inputValue}`)
+		.get(`https://0dliwphpyd.execute-api.us-east-1.amazonaws.com/master/api/v1/course?query=${inputValue}`)
 		.then(res => parseOptions(res.data));
 };
 
