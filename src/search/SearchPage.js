@@ -7,6 +7,7 @@ import SearchBar from './SearchBar.js';
 import CourseListing from '../common/CourseListing.js';
 import lodashThrottle from 'lodash/throttle';
 import Filter from './Filter';
+import { API_BASE_URL } from '../settings';
 
 const SearchPage = props => {
 	// Results
@@ -42,7 +43,7 @@ const SearchPage = props => {
 		if (!query.trim()) return;
 		axios
 			.get(
-				`http://127.0.0.1:5000/api/v1/course?query=${query}&term_id=${getIDCommaStr(
+				`${API_BASE_URL}/course?query=${query}&term_id=${getIDCommaStr(
 					terms
 				)}&instructor_id=${getIDCommaStr(
 					instructors
@@ -84,14 +85,6 @@ const SearchPage = props => {
 					</div>
 				</div>
 			</div>
-			{/*<div className={styles.recentReports}>*/}
-			{/*<div className={styles.reports}>*/}
-			{/*<CourseListing*/}
-			{/*title={'RECENTLY VIEWED REPORTS'}*/}
-			{/*courses={results}*/}
-			{/*/>*/}
-			{/*</div>*/}
-			{/*</div>*/}
 		</div>
 	);
 };

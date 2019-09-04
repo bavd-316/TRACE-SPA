@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import AsyncSelect from 'react-select/lib/Async';
 import lodashThrottle from 'lodash/throttle';
+import { API_BASE_URL } from '../settings';
 
 const loadOptions = inputValue => getOptions(inputValue);
 const debouncedLoad = lodashThrottle(loadOptions, 500);
@@ -16,7 +17,7 @@ const parseOptions = options =>
 
 const getOptions = inputValue => {
 	return axios
-		.get(`http://127.0.0.1:5000/api/v1/course?query=${inputValue}`)
+		.get(`${API_BASE_URL}/course?query=${inputValue}`)
 		.then(res => parseOptions(res.data));
 };
 

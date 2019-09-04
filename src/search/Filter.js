@@ -2,6 +2,7 @@ import React from 'react';
 import styles from './Filter.css';
 import AsyncSelect from 'react-select/lib/Async';
 import axios from 'axios';
+import { API_BASE_URL } from '../settings';
 
 const Filter = ({ setTerms, setDepartments, setInstructors }) => {
 	const departmentToString = d => `${d.title} (${d.code})`;
@@ -17,7 +18,7 @@ const Filter = ({ setTerms, setDepartments, setInstructors }) => {
 		if (!inputValue && withSearch) return [];
 		return axios
 			.get(
-				`http://127.0.0.1:5000/api/v1/${resource}` +
+				`${API_BASE_URL}/${resource}` +
 					((withSearch && `?query=${inputValue}`) || '')
 			)
 			.then(res =>

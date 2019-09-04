@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import lodashIsEmpty from 'lodash/isEmpty';
 import PageRouter from '../common/PageRouter';
+import { API_BASE_URL } from '../settings';
 
 const ReportViewContainer = ({ match, routes }) => {
 	const [report, setReport] = useState({});
@@ -9,11 +10,7 @@ const ReportViewContainer = ({ match, routes }) => {
 		if (lodashIsEmpty(report)) {
 			console.log('loaded');
 			axios
-				.get(
-					`http://127.0.0.1:5000/api/v1/course/${
-						match.params.id
-					}/scores`
-				)
+				.get(`${API_BASE_URL}/course/${match.params.id}/scores`)
 				.then(res => setReport(res.data))
 				.catch(ex => console.error(ex));
 		}

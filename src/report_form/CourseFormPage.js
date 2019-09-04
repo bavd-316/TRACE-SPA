@@ -5,12 +5,13 @@ import lodashRandom from 'lodash/random';
 import lodashRange from 'lodash/range';
 import axios from 'axios';
 import CategoryForm from './CategoryForm';
+import { API_BASE_URL } from '../settings';
 
 const CompletionBar = ({ index, length }) => (
 	<div className={styles.sectionBar}>
 		{lodashRange(0, length).map(ind => (
 			<div
-				className={ind >= index ? styles.active : null}
+				className={ind <= index ? styles.active : null}
 				key={`${ind}`}
 			/>
 		))}
@@ -28,7 +29,7 @@ const CourseFormPage = ({ match, ...props }) => {
 	const saveDraft = () =>
 		axios
 			.post(
-				`http://127.0.0.1:5000/api/v1/course/${
+				`${API_BASE_URL}/course/${
 					course.id
 					// Random User because we don't have those yet
 				}/response/${lodashRandom(1, 1000000)}`,
@@ -40,17 +41,13 @@ const CourseFormPage = ({ match, ...props }) => {
 	useEffect(() => {
 		if (lodashIsEmpty(course)) {
 			axios
-				.get(
-					`http://127.0.0.1:5000/api/v1/course/${
-						match.params.courseId
-					}`
-				)
+				.get(`${API_BASE_URL}/course/${match.params.courseId}`)
 				.then(res => {
 					const resp_course = res.data;
 					setCourse(resp_course);
 					axios
 						.get(
-							`http://127.0.0.1:5000/api/v1/term/${
+							`${API_BASE_URL}/term/${
 								resp_course.term.id
 							}/categories`
 						)
@@ -81,11 +78,13 @@ const CourseFormPage = ({ match, ...props }) => {
 						<div className={styles.buttonCluster}>
 							<button
 								className={styles.button}
-								onClick={() =>
-									index === categories.length - 1
-										? saveDraft()
-										: setIndex(index + 1)
-								}
+								onClick={() => {
+									if (index === categories.length - 1) {
+										saveDraft();
+									} else {
+										setIndex(index + 1);
+									}
+								}}
 							>
 								{index < categories.length - 1
 									? 'Next'
